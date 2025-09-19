@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Form Data Pegawai</title>
+        <!-- 1. Include Tailwind CSS for styling -->
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="script.js" defer></script>
+        <style>
+            /* A little custom style for a smoother experience */
+            body {
+                font-family: "Inter", sans-serif;
+            }
+        </style>
+    </head>
+    <body class="bg-gray-100 text-gray-800">
+        <div class="container mx-auto p-4 md:p-8 max-w-6xl">
+            <!-- Form -->
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg mb-8">
+                <h1 class="text-2xl font-bold mb-6 text-center text-blue-600">
+                    Form Pendaftaran Pegawai
+                </h1>
+
+                <form id="pegawaiForm" onsubmit="tambahPegawai(event)">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <!-- Nama Pegawai -->
+                        <div>
+                            <label
+                                for="nama"
+                                class="block mb-2 font-medium text-gray-700"
+                                >Nama Pegawai</label
+                            >
+                            <input
+                                type="text"
+                                id="nama"
+                                name="nama"
+                                required
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-300"
+                                placeholder="Contoh: Budi Santoso"
+                            />
+                        </div>
+
+                        <!-- Umur -->
+                        <div>
+                            <label
+                                for="umur"
+                                class="block mb-2 font-medium text-gray-700"
+                                >Umur</label
+                            >
+                            <input
+                                type="number"
+                                id="umur"
+                                name="umur"
+                                required
+                                min="18"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-300"
+                                placeholder="Minimal 18 tahun"
+                            />
+                        </div>
+
+                        <!-- Jabatan -->
+                        <div>
+                            <label
+                                for="jabatan"
+                                class="block mb-2 font-medium text-gray-700"
+                                >Jabatan</label
+                            >
+                            <select
+                                id="jabatan"
+                                name="jabatan"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-300"
+                            >
+                                <option value="Manajer">Manajer</option>
+                                <option value="Asisten">Asisten Manajer</option>
+                                <option value="Staff">Staff</option>
+                            </select>
+                        </div>
+
+                        <!-- Status -->
+                        <div>
+                            <label
+                                for="status"
+                                class="block mb-2 font-medium text-gray-700"
+                                >Status</label
+                            >
+                            <select
+                                id="status"
+                                name="status"
+                                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-300"
+                            >
+                                <option value="Menikah">Menikah</option>
+                                <option value="Belum Menikah">
+                                    Belum Menikah
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Tombol Submit -->
+                    <div class="mt-8 text-center">
+                        <button
+                            type="submit"
+                            class="w-full md:w-auto bg-blue-600 text-white font-bold py-3 px-8 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 transition duration-300 transform hover:scale-105"
+                        >
+                            Tambah Pegawai
+                        </button>
+                    </div>
+                    <p
+                        id="error-message"
+                        class="text-red-500 text-center mt-4"
+                    ></p>
+                </form>
+            </div>
+
+            <!-- Tabel -->
+            <div class="bg-white p-6 md:p-8 rounded-xl shadow-lg">
+                <h2 class="text-2xl font-bold mb-6 text-center text-gray-700">
+                    Data Pegawai
+                </h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-center">
+                        <thead class="bg-gray-200 border-b-2 border-gray-300">
+                            <tr>
+                                <th class="py-3 px-4 font-semibold">
+                                    Nama Pegawai
+                                </th>
+                                <th class="py-3 px-4 font-semibold">Umur</th>
+                                <th class="py-3 px-4 font-semibold">Jabatan</th>
+                                <th class="py-3 px-4 font-semibold">Status</th>
+                                <th class="py-3 px-4 font-semibold">
+                                    Gaji Pokok
+                                </th>
+                                <th class="py-3 px-4 font-semibold">
+                                    Tunjangan jabatan
+                                </th>
+                                <th class="py-3 px-4 font-semibold">BPJS</th>
+                                <th class="py-3 px-4 font-semibold">
+                                    Tunjangan Keluarga
+                                </th>
+                                <th class="py-3 px-4 font-semibold">
+                                    Total Gaji
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody id="pegawaiTableBody">
+                            <!-- New employee data will be inserted here by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
